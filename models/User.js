@@ -1,29 +1,46 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const artistSchema = new Schema({
+  artist_id: Integer,
+  name: String,
+  nameWithoutThePrefix: String,
+  useThePrefix: Boolean
+})
+
 const songListSchema = new Schema({
-  song_id: Integer,
-  song_url: String
-  // list song titles
+  songsterr_id: Integer,
+  title: String,
+  artist: [artistSchema],
+  chordsPresent: Boolean
+})
+
+const beatsListSchema = new Schema({
+  title: String,
+  description: String,
+  beats_url: String
 })
 
 const commentsSchema = new Schema({
+  songsterr_id: Integer,
   content: String,
-  song_id: Integer
+  timestamp: Timestamp
 })
 
-const usernameSchema = new Schema({
+const profileSchema = new Schema({
   username: String,
-  comments: [commentsSchema]
+  primary_inst: String,
+  stage_name: String,
+  comments: [commentsSchema],
+  song_list: [songListSchema],
+  beats_list: [beatsListSchema]
 })
 
-// create User Schema:
 const userSchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  username: [usernameSchema],
   email: {
     type: String,
     required: true
@@ -33,14 +50,7 @@ const userSchema = new Schema({
     required: true,
     minLength: 8
   },
-  primary_inst: {
-    type: String
-  },
-  stage_name: {
-    type: String
-  },
-  song_list: [songListSchema],
-  beats_list: [beatsListSchema]
+  userProfile: [profileSchema]
 });
 
 module.exports = mongoose.model('User', userSchema);
