@@ -12,7 +12,8 @@ const songListSchema = new Schema({
   songsterr_id: Integer,
   title: String,
   artist: [artistSchema],
-  chordsPresent: Boolean
+  chordsPresent: Boolean,
+  url: String
 })
 
 const beatsListSchema = new Schema({

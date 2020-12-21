@@ -4,7 +4,7 @@ models.User.create({
   name: 'Jimmy Page',
   email: 'jimmy@ledzeppelin.com',
   password: '#Rnfdsj#)@JJFNFJnfhfh4h3q12M',
-  username: {
+  userProfile: {
     username: 'jimmy-page',
     primary_inst: 'guitar',
     stage_name: 'Led Zeppelin',
@@ -21,7 +21,8 @@ models.User.create({
         nameWithoutThePrefix: 'x',
         useThePrefix: true
       },
-      chordsPresent: true
+      chordsPresent: true,
+      url: "http://www.songsterr.com/a/wa/song?id={songsterr_id}"
     },
     beats_list: {
       title: 'beat-1',
